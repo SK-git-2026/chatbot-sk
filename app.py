@@ -4,7 +4,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 import os  # (kept for future use if you want to set env vars)
 
-st.title('SK's ChatBot Application')
+st.title('SK-ChatBot Application')
 
 # --- Prompt Template ---
 prompt = ChatPromptTemplate.from_messages([
