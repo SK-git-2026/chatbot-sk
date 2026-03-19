@@ -18,13 +18,15 @@ pipeline{
         stage('Docker Build'){
 
             steps{
-                sh'docker build -t $IMAGE_NAME . '                
+                sh''' docker build -t $IMAGE_NAME . '''                
 
             }
         }
         stage('Container run'){
             steps{
                 sh'''
+                docker stop sk-chatbot || true
+                docker rm sk-chatbot || true
                 docker run -it -d --name sk-chatbot -p 9001:8501 $IMAGE_NAME
                 ''' 
             }
