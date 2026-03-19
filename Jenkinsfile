@@ -1,7 +1,7 @@
 pipeline{
     agent any
 
-    environmnets{
+    environment {
         IMAGE_NAME = "chatbot-sk-app"
         VERSION = "${BUILD_NUMBER}"
 
@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage('Git Checkout')
         {
-           Steps{ 
+           steps{ 
             git url: 'https://github.com/SK-git-2026/chatbot-sk.git',branch: 'main'
            }
 
