@@ -11,7 +11,7 @@ pipeline{
         stage('Git Checkout')
         {
            Steps{ 
-            Git url: 'https://github.com/SK-git-2026/chatbot-sk.git',branch: 'main'
+            git url: 'https://github.com/SK-git-2026/chatbot-sk.git',branch: 'main'
            }
 
         }
