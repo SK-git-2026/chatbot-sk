@@ -28,6 +28,7 @@ pipeline{
                 docker stop sk-chatbot || true
                 docker rm sk-chatbot || true
                 docker run -it -d --name sk-chatbot -p 9001:8501 $IMAGE_NAME
+                
                 ''' 
             }
         }
