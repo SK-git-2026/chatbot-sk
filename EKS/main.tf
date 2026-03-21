@@ -36,7 +36,7 @@ resource "aws_route_table" "sk-route_table" {
 
     vpc_id = aws_vpc.sk-vpc.id
 
-    route = {
+    route {
         cidr_block = "0.0.0.0/0"
         gateway_id = aws_internet_gateway.sk_igw.id
     }
