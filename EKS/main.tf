@@ -10,7 +10,7 @@ resource "aws_vpc" "sk-vpc" {
   }
 }
 
-resource "aws_subnet" "sk-subnet" {
+resource "aws_subnet" "sk_subnet" {
     count = 2
     vpc_id = aws_vpc.sk-vpc.id
     cidr_block = cidrsubnet(aws_vpc.sk-vpc.cidr_block, 8, count.index)
@@ -50,7 +50,7 @@ resource "aws_route_table" "sk-route_table" {
 resource "aws_route_table_association" "Sk_rt" {
 
     count = 2
-    subnet_id = aws_subnet.sk-subnet[count.index].id
+    subnet_id = aws_subnet.sk_subnet[count.index].id
     route_table_id = aws_route_table.sk-route_table.id
   
 }
