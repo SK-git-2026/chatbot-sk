@@ -56,7 +56,7 @@ resource "aws_route_table_association" "Sk_rt" {
 }
 
 
-resource "aws_security_group" "sk_clusture_sg" {
+resource "aws_security_group" "sk_cluster_sg" {
   name        = "sk_clusture_sg"
   description = "Security group for cluster"
   vpc_id      = aws_vpc.sk-vpc.id
@@ -78,7 +78,7 @@ resource "aws_security_group" "sk_clusture_sg" {
   }
 
   tags = {
-    Name = "sk_clusture_sg"
+    Name = "sk_cluster_sg"
   }
 
   
