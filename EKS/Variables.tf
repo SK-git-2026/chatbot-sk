@@ -1,5 +1,5 @@
 variable "ssh_key_name" {
-  description = "kkk"
+  description = "SSH key"
   type = string
-  default = "sk"
+  default = "kkk"
 }
