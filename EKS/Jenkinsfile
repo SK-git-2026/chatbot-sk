@@ -63,9 +63,8 @@ pipeline {
             }
         }
 
-    }
 
-    stage ('TF stafile Backup')
+    stage('TF stafile Backup')
     {
         steps{
             sh '''
@@ -75,6 +74,10 @@ pipeline {
             '''
         }
     }
+
+    }
+
+    
 
 }
 
