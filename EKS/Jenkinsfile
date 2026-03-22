@@ -65,6 +65,17 @@ pipeline {
 
     }
 
+    stage ('TF stafile Backup')
+    {
+        steps{
+            sh '''
+            pwd
+            cd EKS/
+            aws s3 cp *.tfstate  s3://sk-tf-backup-file/EKS/Chatbot
+            '''
+        }
+    }
+
 }
 
 
