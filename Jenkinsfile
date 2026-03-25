@@ -21,7 +21,40 @@ pipeline{
                 sh''' docker build -t $IMAGE_NAME . '''                
 
             }
+
         }
+
+        
+        stage ('Docker push'){
+
+        steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'docker-hub-creds',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) 
+                
+                {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                }
+            }
+
+        }
+    
+
+    stage('Pushing to Docker hub') {
+            steps {
+                sh '''
+                    docker push ${IMAGE_NAME}
+                '''
+            }
+        }
+
+
+        
+        
         stage('Container run'){
             steps{
                 sh'''
@@ -33,5 +66,7 @@ pipeline{
             }
         }
 
-    }
+    
+
+}
 }
