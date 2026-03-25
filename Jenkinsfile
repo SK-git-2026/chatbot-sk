@@ -55,7 +55,7 @@ pipeline{
 
         
         
-        stage('Container run'){
+      /*  stage('Container run'){
             steps{
                 sh'''
                 docker stop sk-chatbot || true
@@ -65,6 +65,7 @@ pipeline{
                 ''' 
             }
         }
+        */
 
     
 
