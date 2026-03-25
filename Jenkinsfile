@@ -1,73 +1,45 @@
-pipeline{
+pipeline {
+
     agent any
 
     environment {
-        IMAGE_NAME = "chatbot-sk-app"
+        DOCKER_REPO = "skpatilhub/chatbot-sk-app"
         VERSION = "${BUILD_NUMBER}"
-
     }
 
-    stages{
-        stage('Git Checkout')
-        {
-           steps{ 
-            git url: 'https://github.com/SK-git-2026/chatbot-sk.git',branch: 'main'
-           }
+    stages {
 
-        }
-        stage('Docker Build'){
-
-            steps{
-                sh''' docker build -t $IMAGE_NAME . '''                
-
+        stage('Git Checkout') {
+            steps {
+                git url: 'https://github.com/SK-git-2026/chatbot-sk.git', branch: 'main'
             }
-
         }
 
-        
-        stage ('Docker push'){
+        stage('Docker Build') {
+            steps {
+                sh "docker build -t ${DOCKER_REPO}:${VERSION} ."
+            }
+        }
 
-        steps {
+        stage('Docker Login') {
+            steps {
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'docker-hub-creds',
                         usernameVariable: 'DOCKER_USERNAME',
                         passwordVariable: 'DOCKER_PASSWORD'
                     )
-                ]) 
-                
-                {
+                ]) {
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                 }
             }
-
         }
-    
 
-    stage('Pushing to Docker hub') {
+        stage('Push Image') {
             steps {
-                sh '''
-                    docker push ${IMAGE_NAME}
-                '''
+                sh "docker push ${DOCKER_REPO}:${VERSION}"
             }
         }
 
-
-        
-        
-      /*  stage('Container run'){
-            steps{
-                sh'''
-                docker stop sk-chatbot || true
-                docker rm sk-chatbot || true
-                docker run -it -d --name sk-chatbot -p 9001:8501 $IMAGE_NAME
-                
-                ''' 
-            }
-        }
-        */
-
-    
-
-}
+    }
 }
