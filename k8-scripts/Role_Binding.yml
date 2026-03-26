@@ -7,7 +7,6 @@ subjects:
 - kind: ServiceAccount
   name: jenkins # "name" is case sensitive
   namespace: sk
-  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role # Must be 'Role' or 'ClusterRole'
   name: app-role # Name of the Role or ClusterRole being bound
