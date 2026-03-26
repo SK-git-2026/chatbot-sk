@@ -5,7 +5,7 @@ metadata:
   namespace: sk # The namespace where this binding applies
 subjects:
 - kind: ServiceAccount
-  name: Jenkins # "name" is case sensitive
+  name: jenkins # "name" is case sensitive
   namespace: sk
   apiGroup: rbac.authorization.k8s.io
 roleRef:
